@@ -2,13 +2,13 @@ from flask import Flask,  render_template
 
 app = Flask(__name__)
 
-@app.route("/a")
-def a():
-    return "<p>Hello, World!xcffd</p>"
-
 @app.route("/")
 def main():
     return render_template('index.html')
+
+@app.route("/profile")
+def profile():
+    return render_template('profile.html')
 
 @app.route("/some")
 def some():

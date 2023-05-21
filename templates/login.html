@@ -1,5 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Login here</h1>
+    {% if login_failed %}
+    <h1 class="text-danger">Invalid credentials!</h1>
+    {% endif %}
+    <h1>Log in to our shop.</h1>
+    <form method="post">
+      <label>
+        User name:
+        <input type="text" name="user_name">
+      </label><br>
+      <label>
+        Password:
+        <input type="password" name="password">
+      </label><br>
+      <label>
+        City:
+        <input type="text" name="city" value="Wąchock">
+      </label><br>
+      <label>
+        Favorite color:
+        <input type="color" name="color" value="#0dde83">
+      </label><br>
+      <button>Log In</button>
+    </form>
 {% endblock %}

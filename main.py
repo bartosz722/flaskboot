@@ -1,30 +1,50 @@
-from flask import Flask, redirect,  render_template, url_for
+from flask import Flask, make_response, redirect,  render_template, request, url_for
+
+from models.user import User
 
 app = Flask(__name__)
+user_cookie = 'shop_user_name'
 
 @app.route("/")
 def main():
-    return render_template('index.html')
+    user = _get_user()
+    return render_template('index.html', user=user)
 
 @app.route("/buy")
 def buy():
-    return render_template('buy.html')
+    user = _get_user()
+    return render_template('buy.html', user=user)
 
 @app.route("/sell")
 def sell():
-    return render_template('sell.html')
+    user = _get_user()
+    return render_template('sell.html', user=user)
 
 @app.route("/profile")
 def profile():
-    return render_template('profile.html')
+    user = _get_user()
+    return render_template('profile.html', user=user)
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    if request.method == 'POST':
+        name = request.form.get('user_name', '').strip()
+        passwd = request.form.get('password', '').strip()
+        if name and passwd:
+            resp = redirect(url_for('main'))
+            resp.set_cookie(user_cookie, name)
+        else:
+            resp = redirect(url_for('login', login_failed=1))
+        return resp
+    else:
+        login_failed = bool(request.args.get('login_failed'))
+        return render_template('login.html', login_failed=login_failed)
 
 @app.route("/logout")
 def logout():
-    return redirect(url_for('main'))
+    resp = redirect(url_for('main'))
+    resp.delete_cookie(user_cookie)
+    return resp
 
 @app.route("/some")
 def some():
@@ -34,3 +54,10 @@ def some():
         'age': 20,
     }
     return render_template('some.html', **args)
+
+def _get_user():
+    uc = request.cookies.get(user_cookie)
+    if uc:
+        ret = User()
+        ret.name = uc
+        return ret

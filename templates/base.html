@@ -22,17 +22,25 @@
             {% set buy_active = 'active' if request.endpoint == 'buy' else '' %}
             {% set sell_active = 'active' if request.endpoint == 'sell' else '' %}
             {% set profile_active = 'active' if request.endpoint == 'profile' else '' %}
+            {% set login_active = 'active' if request.endpoint == 'login' else '' %}
             <a class="nav-link {{main_active}}" aria-current="page" href="{{ url_for('main') }}">Home</a>
             <a class="nav-link {{buy_active}}" aria-current="page" href="{{ url_for('buy') }}">Buy</a>
             <a class="nav-link {{sell_active}}" aria-current="page" href="{{ url_for('sell') }}">Sell</a>
             <a class="nav-link {{profile_active}}" href="{{ url_for('profile') }}">Profile</a>
-            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+            {% if user %}
+            <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+            {% else %}
+            <a class="nav-link {{login_active}}" href="{{ url_for('login') }}">Log In</a>
+            {% endif %}
           </div>
         </div>
       </div>
     </nav>
     
     <main>
+      {% if user and user.name %}
+      <p>Hello, {{ user.name }}!</p>
+      {% endif %}
       {% block content %} {% endblock %}
     </main>
     

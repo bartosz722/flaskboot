@@ -19,12 +19,14 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             {% set main_active = 'active' if request.endpoint == 'main' else '' %}
+            {% set buy_active = 'active' if request.endpoint == 'buy' else '' %}
+            {% set sell_active = 'active' if request.endpoint == 'sell' else '' %}
             {% set profile_active = 'active' if request.endpoint == 'profile' else '' %}
             <a class="nav-link {{main_active}}" aria-current="page" href="{{ url_for('main') }}">Home</a>
-            <a class="nav-link" href="#">Buy</a>
-            <a class="nav-link" href="#">Sell</a>
+            <a class="nav-link {{buy_active}}" aria-current="page" href="{{ url_for('buy') }}">Buy</a>
+            <a class="nav-link {{sell_active}}" aria-current="page" href="{{ url_for('sell') }}">Sell</a>
             <a class="nav-link {{profile_active}}" href="{{ url_for('profile') }}">Profile</a>
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
           </div>
         </div>
       </div>

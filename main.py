@@ -28,7 +28,7 @@ def profile():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        name = request.form.get('user_name', '').strip()
+        name = request.form.get('userName', '').strip()
         passwd = request.form.get('password', '').strip()
         if name and passwd:
             resp = redirect(url_for('main'))

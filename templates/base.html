@@ -29,7 +29,11 @@
             <a class="nav-link {{sell_active}}" aria-current="page" href="{{ url_for('sell') }}">Sell</a>
             <a class="nav-link {{profile_active}}" href="{{ url_for('profile') }}">Profile</a>
             {% if user %}
-            <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+            <a class="nav-link" href="{{ url_for('logout') }}" 
+              data-bs-toggle="tooltip" data-bs-title="{{user.name}}" data-bs-delay="500">
+              Log Out
+            </a>
+            <div class="text-light-emphasis text-decoration-underline py-2 p-lg-2">{{user.name}}</div>
             {% else %}
             <a class="nav-link {{login_active}}" href="{{ url_for('login') }}">Log In</a>
             {% endif %}
@@ -46,5 +50,10 @@
     </main>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <script>
+      const tooltipElements = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+      const tooltips = [...tooltipElements].map(x => new bootstrap.Tooltip(x));
+    </script>
   </body>
 </html>

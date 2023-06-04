@@ -29,11 +29,14 @@
             <a class="nav-link {{sell_active}}" aria-current="page" href="{{ url_for('sell') }}">Sell</a>
             <a class="nav-link {{profile_active}}" href="{{ url_for('profile') }}">Profile</a>
             {% if user %}
-            <a class="nav-link" href="{{ url_for('logout') }}" 
-              data-bs-toggle="tooltip" data-bs-title="{{user.name}}" data-bs-delay="500">
+            <a class="nav-link" href="{{ url_for('logout') }}">
               Log Out
             </a>
-            <div class="text-light-emphasis text-decoration-underline py-2 p-lg-2">{{user.name}}</div>
+            <span class="badge text-bg-success fs-6 align-self-lg-center" 
+              style="height: min-content; width: min-content"
+              data-bs-toggle="tooltip" data-bs-title="It's you!" data-bs-delay="500">
+              {{user.name}}
+            </span>
             {% else %}
             <a class="nav-link {{login_active}}" href="{{ url_for('login') }}">Log In</a>
             {% endif %}

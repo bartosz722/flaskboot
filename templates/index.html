@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>This is the shop!</h1>
-    <h2>Buy something.</h2>
-    <div class="debug">
-      <div>{{ self }}</div>
-      <div>{{ request }}</div>
-      <div>{{ request.endpoint }}</div>
+    <div class="card mt-4" style="width: 40%">
+      <img src="/static/brokuł.jpg" class="card-img-top" alt="Buy something.">
+      <div class="card-body">
+        <h5 class="card-title">This is the shop</h5>
+        <p class="card-text">Find some products and buy them. They are really cheap!</p>
+        <a href="/buy" class="btn btn-primary">Buy</a>
+      </div>
     </div>
 {% endblock %}

@@ -46,9 +46,6 @@
     </nav>
     
     <main class="container-md">
-      {% if user and user.name %}
-      <p>Hello, {{ user.name }}!</p>
-      {% endif %}
       {% block content %} {% endblock %}
     </main>
     

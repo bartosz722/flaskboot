@@ -32,7 +32,11 @@
             <a class="nav-link" href="{{ url_for('logout') }}">
               Log Out
             </a>
-            <span class="badge text-bg-success fs-6 align-self-lg-center" 
+            <div>
+              <div id="user-head"></div>
+              <div id="user-body"></div>
+            </div>
+            <span class="badge text-bg-success fs-6 align-self-lg-center"
               style="height: min-content; width: min-content"
               data-bs-toggle="tooltip" data-bs-title="It's you!" data-bs-delay="500">
               {{user.name}}

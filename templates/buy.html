@@ -2,4 +2,18 @@
 
 {% block content %}
     <h1>Buy something, man!</h1>
+    <ul class="list-group">
+      {%for i in range(0, 5)%}
+        <li class="list-group-item">Rzecz {{i+1}}</li>
+      {%endfor%}
+    </div>
+    <nav class="mt-2" aria-label="Pages">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
 {% endblock %}

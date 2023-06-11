@@ -32,15 +32,17 @@
             <a class="nav-link" href="{{ url_for('logout') }}">
               Log Out
             </a>
-            <div>
-              <div id="user-head"></div>
-              <div id="user-body"></div>
-            </div>
-            <span class="badge text-bg-success fs-6 align-self-lg-center"
+            <div class="d-flex align-items-center badge text-bg-success fs-6 ms-1"
               style="height: min-content; width: min-content"
               data-bs-toggle="tooltip" data-bs-title="It's you!" data-bs-delay="500">
-              {{user.name}}
-            </span>
+              <div>
+                <div id="user-head"></div>
+                <div id="user-body"></div>
+              </div>
+              <div class="ms-2">
+                {{user.name}}
+              </div>
+            </div>
             {% else %}
             <a class="nav-link {{login_active}}" href="{{ url_for('login') }}">Log In</a>
             {% endif %}

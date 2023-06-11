@@ -12,14 +12,14 @@
     width: 0.7em;
     height: 0.7em;
     margin: 0 0.15em;
-    background-color: aqua;
+    background-color: #8BC34A;
     border-radius: 50%;
 }
 
 #user-body {
     width: 1em;
     height: 1em;
-    background-color: aqua;
+    background-color: #8BC34A;
     clip-path: ellipse(50% 100% at 50% 100%);
     transform: translate(0, -5%);
 }

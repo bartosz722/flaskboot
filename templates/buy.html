@@ -3,9 +3,9 @@
 {% block content %}
     <h1>Buy something, man!</h1>
     <ul class="list-group">
-      {%for i in range(0, 5)%}
-        <li class="list-group-item">Rzecz {{i+1}}</li>
-      {%endfor%}
+      {% for i in model.items %}
+        <li class="list-group-item">{{i.name}}</li>
+      {% endfor %}
     </div>
     <nav class="mt-2" aria-label="Pages">
       <ul class="pagination">

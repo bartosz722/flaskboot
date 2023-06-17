@@ -1,0 +1,29 @@
+body {
+    margin: 0px;
+}
+#top-div div {
+    padding: 3px;
+    margin: 5px;
+    border: 1px solid violet;
+}
+#top-div {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    border: 3px solid blue;
+    box-sizing: border-box;
+}
+#sub-page {
+    flex-grow: 1;
+}
+#sub-main {
+    display: flex;
+}
+#cal-and-convs {
+    display: flex;
+    flex-direction: column;
+}
+#convs {
+    max-height: calc(100vh - 250px);
+    overflow: auto;
+}

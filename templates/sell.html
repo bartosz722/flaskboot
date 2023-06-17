@@ -1,5 +1,42 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    <h1>Sell something, man!</h1>
-{% endblock %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shop</title>
+    <link href="{{ url_for('static', filename='sell.css') }}" rel="stylesheet">
+  </head>
+  <body>    
+    <div id="top-div">
+      <div id="header">
+        header
+      </div>
+      <div id="sub-page">
+        <div>
+          sub-header
+        </div>
+        <div id="sub-main">
+          <div id="cal-and-convs">
+            <div id="cal">
+              calendar
+            </div>
+            <div id="convs">
+              {% for i in range(30) %}
+                <div>conv {{i+1}}</div>
+              {% endfor %}
+            </div>
+          </div>
+          <div id="sel-conv">
+            sel-conv
+          </div>
+          <div id="device-info">
+            device-info
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        footer
+      </div>
+    </div>
+  </body>
+</html>

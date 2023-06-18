@@ -15,15 +15,25 @@ body {
 }
 #sub-page {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color:rgb(255, 241, 224);
 }
 #sub-main {
     display: flex;
+    flex-grow: 1;
 }
 #cal-and-convs {
     display: flex;
     flex-direction: column;
 }
 #convs {
-    max-height: calc(100vh - 250px);
     overflow: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-height: 0;
+}
+.conv {
+    background-color: aquamarine;
 }

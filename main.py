@@ -1,7 +1,7 @@
 from flask import Flask, make_response, redirect,  render_template, request, url_for
-from models.buy import BuyItem, BuyModel
-from models.user import User
+from models import BuyItem, BuyModel, User
 from utils import *
+from ui_utils import *
 
 app = Flask(__name__)
 user_cookie = 'shop_user_name'
@@ -13,8 +13,9 @@ def main():
 
 @app.route("/buy")
 def buy():
+    page = request.args.get('page', default=1, type=int)
     user = _get_user()
-    model = _get_buy_model(1, 5)
+    model = _get_buy_model(page, 5)
     return render_template('buy.html', user=user, model=model)
 
 @app.route("/sell")
@@ -65,15 +66,13 @@ def _get_user():
         return ret
 
 def _get_buy_model(page, page_size):
-    total_items = 32
+    total_items = 35
     ret = BuyModel()
     start, end = get_start_end_indexes(page, page_size, total_items)
     if start < 0:
         return ret    
-    ret.page = page
-    ret.page_size = page_size
-    ret.total_pages = get_page_count(total_items, page_size)
-    ret.total_items = total_items
+    set_pagination(ret.pag, page, page_size, total_items)
+    
     for i in range(start, end):
         item = BuyItem()
         item.name = f'Rzecz {i + 1}'

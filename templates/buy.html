@@ -11,16 +11,28 @@
         </li>
       {% endfor %}
     </div>
-    <div>Page: {{model.page}}<br>Page size: {{model.page_size}}<br>
-         Total pages: {{model.total_pages}}<br>Total items: {{model.total_items}}
+    <div>Page: {{model.pag.page}}<br>Page size: {{model.pag.page_size}}<br>
+         Total pages: {{model.pag.total_pages}}<br>Total items: {{model.pag.total_items}}<br>
+         nav_from: {{model.pag.nav_from}}<br>
+         nav_to: {{model.pag.nav_to}}<br>
+         nav_prev_disabled: {{model.pag.nav_prev_disabled}}<br>
+         nav_next_disabled: {{model.pag.nav_next_disabled}}<br>
     </div>
     <nav class="mt-2" aria-label="Pages">
       <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        {% set prev_href = '/buy?page={}'.format(model.pag.page - 1) if not model.pag.nav_prev_disabled else '#' %}
+        {% set next_href = '/buy?page={}'.format(model.pag.page + 1) if not model.pag.nav_next_disabled else '#' %}
+        {% set prev_disabled = 'disabled' if model.pag.nav_prev_disabled else '' %}
+        {% set next_disabled = 'disabled' if model.pag.nav_next_disabled else '' %}
+        <li class="page-item"><a class="page-link {{prev_disabled}}" href="{{prev_href}}">Previous</a></li>
+        {% for p in range(model.pag.nav_from, model.pag.nav_to + 1) %}
+          {% set link = '/buy?page={}'.format(p) if p != model.pag.page else '#' %}
+          <li class="page-item {{'active' if p == model.pag.page}}"><a class="page-link" href="{{link}}">{{p}}</a></li>
+        {% endfor %}
+        <li class="page-item">
+          <span class="page-link">of 100</span>
+        </li>
+        <li class="page-item {{next_disabled}}"><a class="page-link" href="{{next_href}}">Next</a></li>
       </ul>
     </nav>
 {% endblock %}

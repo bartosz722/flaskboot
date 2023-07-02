@@ -1,6 +1,7 @@
 from flask import Flask, make_response, redirect,  render_template, request, url_for
 from models.buy import BuyItem, BuyModel
 from models.user import User
+from utils import *
 
 app = Flask(__name__)
 user_cookie = 'shop_user_name'
@@ -63,30 +64,21 @@ def _get_user():
         ret.name = uc
         return ret
 
-def _get_page_count(total_items, page_size):
-    pages = total_items // page_size
-    if total_items % page_size > 0:
-        pages += 1
-    return pages
-
 def _get_buy_model(page, page_size):
-    total_items = 30
+    total_items = 32
     ret = BuyModel()
-    idx_a = (page - 1) * page_size
-    if idx_a >= total_items:
-        return ret
-    idx_b = idx_a + page_size
-    if idx_b > total_items:
-        idx_b = total_items
-    
+    start, end = get_start_end_indexes(page, page_size, total_items)
+    if start < 0:
+        return ret    
     ret.page = page
     ret.page_size = page_size
-    ret.total_pages = _get_page_count(total_items, page_size)
-    for i in range(idx_a, idx_b):
+    ret.total_pages = get_page_count(total_items, page_size)
+    ret.total_items = total_items
+    for i in range(start, end):
         item = BuyItem()
         item.name = f'Rzecz {i + 1}'
         item.description = 'To jest niesamowita rzecz.'
-        item.image = f'thing {i + 1}.jpg'
+        item.image = f'/static/item{i%4}.jpg'
         ret.items.append(item)
 
     return ret

@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Buy something, man!</h1>
-    <ul class="list-group">
+    <h1>Things to buy</h1>
+    <div class="list-group">
       {% for i in model.items %}
-        <li class="list-group-item">{{i.name}}</li>
+        <li class="list-group-item">
+          <img src="{{i.image}}" alt="Item image." class="buy-list-image">
+          <span class="buy-list-name fs-5">{{i.name}}</span>
+          <span class="buy-list-descr fs-6">{{i.description}}</span>
+        </li>
       {% endfor %}
+    </div>
+    <div>Page: {{model.page}}<br>Page size: {{model.page_size}}<br>
+         Total pages: {{model.total_pages}}<br>Total items: {{model.total_items}}
     </div>
     <nav class="mt-2" aria-label="Pages">
       <ul class="pagination">

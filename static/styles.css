@@ -37,3 +37,8 @@
 .buy-list-descr {
     padding-left: 20px;
 }
+
+.page-count-unlink:hover {
+    color: var(--bs-pagination-color);
+    background-color: inherit;
+}

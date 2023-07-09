@@ -24,10 +24,19 @@
     transform: translate(0, -5%);
 }
 
+.buy-list:hover {
+    background-color: lightcyan;
+}
+
+.buy-list:hover img {
+    transform: scale(1.1);
+}
+
 .buy-list-image {
     width: 80px;
     height: 80px;
     object-fit: contain;
+    transition: transform 0.3s;
 }
 
 .buy-list-name {

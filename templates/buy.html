@@ -4,7 +4,7 @@
     <h1>Things to buy</h1>
     <div class="list-group">
       {% for i in model.items %}
-        <li class="list-group-item">
+        <li class="list-group-item buy-list">
           <img src="{{i.image}}" alt="Item image." class="buy-list-image">
           <span class="buy-list-name fs-5">{{i.name}}</span>
           <span class="buy-list-descr fs-6">{{i.description}}</span>

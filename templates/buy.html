@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Things to buy</h1>
+    <h4 class="text-center">Things to buy</h4>
     <div class="list-group">
       {% for i in model.items %}
-        <li class="list-group-item buy-list">
+        <li class="list-group-item buy-list" onclick="gotoBuyItem(this, event)">
           <img src="{{i.image}}" alt="Item image." class="buy-list-image">
-          <span class="buy-list-name fs-5">{{i.name}}</span>
+          <a class="buy-list-name fs-5" href="/profile">{{i.name}}</a>
           <span class="buy-list-descr fs-6">{{i.description}}</span>
         </li>
       {% endfor %}
     </div>
+
+    <script>
+      function gotoBuyItem(elem, ev) {
+        if (ev.target.tagName.toLowerCase() != 'a') {
+          elem.getElementsByTagName('a')[0].click()
+        }
+      }
+    </script>
+
     <nav class="mt-2" aria-label="Pages">
       <ul class="pagination">
         {% set prev_href = '/buy?page={}'.format(model.pag.page - 1) if not model.pag.nav_prev_disabled else '#' %}

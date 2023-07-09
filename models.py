@@ -15,6 +15,7 @@ class User:
 
 class BuyItem:
     def __init__(self) -> None:
+        self.id = ''
         self.name = ''
         self.description = ''
         self.image = ''

@@ -41,6 +41,8 @@
 
 .buy-list-name {
     padding-left: 20px;
+    text-decoration: unset;
+    color: unset;
 }
 
 .buy-list-descr {

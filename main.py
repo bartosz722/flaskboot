@@ -75,6 +75,7 @@ def _get_buy_model(page, page_size):
     
     for i in range(start, end):
         item = BuyItem()
+        item.id = str(i + 1)
         item.name = f'Rzecz {i + 1}'
         item.description = 'To jest niesamowita rzecz.'
         item.image = f'/static/item{i%4}.jpg'

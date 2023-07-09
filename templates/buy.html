@@ -12,14 +12,6 @@
       {% endfor %}
     </div>
 
-    <script>
-      function gotoBuyItem(elem, ev) {
-        if (ev.target.tagName.toLowerCase() != 'a') {
-          elem.getElementsByTagName('a')[0].click()
-        }
-      }
-    </script>
-
     <nav class="mt-2" aria-label="Pages">
       <ul class="pagination">
         {% set prev_href = '/buy?page={}'.format(model.pag.page - 1) if not model.pag.nav_prev_disabled else '#' %}

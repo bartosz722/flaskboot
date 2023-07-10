@@ -25,3 +25,6 @@ class BuyModel:
         self.pag = Pagination()
         self.items: list[BuyItem] = []
 
+class BuyItemModel:
+    def __init__(self) -> None:
+        self.item: BuyItem | None = None

@@ -1,5 +1,5 @@
 from flask import Flask, make_response, redirect,  render_template, request, url_for
-from models import BuyItem, BuyModel, User
+from models import BuyItem, BuyItemModel, BuyModel, User
 from utils import *
 from ui_utils import *
 
@@ -17,6 +17,12 @@ def buy():
     user = _get_user()
     model = _get_buy_model(page, 5)
     return render_template('buy.html', user=user, model=model)
+
+@app.route("/buy/items/<item_id>")
+def buy_item(item_id):
+    user = _get_user()
+    model = _get_buy_item_model(item_id)
+    return render_template('buy_item.html', user=user, model=model)
 
 @app.route("/sell")
 def sell():
@@ -82,3 +88,13 @@ def _get_buy_model(page, page_size):
         ret.items.append(item)
 
     return ret
+
+def _get_buy_item_model(item_id):
+    items = _get_buy_model(1, 1000)
+    model = BuyItemModel()
+    try:
+        item = next(i for i in items.items if i.id == item_id)
+        model.item = item
+    except:
+        pass
+    return model

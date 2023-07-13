@@ -71,6 +71,9 @@ def _get_user():
         ret.name = uc
         return ret
 
+_names = ['Rzecz', 'Przedmiot', 'Coś niesamowitego', 'Zabawka']
+_prices = [10, 1000, 22, 39, 53]
+
 def _get_buy_model(page, page_size):
     total_items = 35
     ret = BuyModel()
@@ -82,9 +85,10 @@ def _get_buy_model(page, page_size):
     for i in range(start, end):
         item = BuyItem()
         item.id = str(i + 1)
-        item.name = f'Rzecz {i + 1}'
-        item.description = 'To jest niesamowita rzecz.'
+        item.name = _names[i % len(_names)] + f' {i + 1}'
+        item.description = 'To jest {}.'.format(item.name[0].lower() + item.name[1:])
         item.image = f'/static/item{i%4}.jpg'
+        item.price = _prices[i % len(_names)] * (i + 1)
         ret.items.append(item)
 
     return ret

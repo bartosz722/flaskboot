@@ -19,6 +19,7 @@ class BuyItem:
         self.name = ''
         self.description = ''
         self.image = ''
+        self.price = 0.0
 
 class BuyModel:
     def __init__(self) -> None:

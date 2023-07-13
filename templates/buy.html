@@ -2,15 +2,16 @@
 
 {% block content %}
     <h4 class="my-2">Things to buy</h4>
-    <div class="list-group">
+    <ul class="list-group">
       {% for i in model.items %}
         <li class="list-group-item buy-list" onclick="gotoBuyItem(this, event)">
           <img src="{{i.image}}" alt="Item image." class="buy-list-image">
+          <span class="buy-list-price">{{i.price}} zł</span>
           <a class="buy-list-name fs-5" href="/buy/items/{{i.id}}">{{i.name}}</a>
           <span class="buy-list-descr fs-6">{{i.description}}</span>
         </li>
       {% endfor %}
-    </div>
+      </ul>
 
     <nav class="mt-2" aria-label="Pages">
       <ul class="pagination">

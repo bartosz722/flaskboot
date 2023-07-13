@@ -39,6 +39,10 @@
     transition: transform 0.3s;
 }
 
+.buy-list-price {
+    padding-left: 20px;
+}
+
 .buy-list-name {
     padding-left: 20px;
     text-decoration: unset;

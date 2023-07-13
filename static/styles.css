@@ -24,11 +24,15 @@
     transform: translate(0, -5%);
 }
 
-.buy-list:hover {
+.buy-list-item {
+    overflow-wrap: anywhere;
+}
+
+.buy-list-item:hover {
     background-color: lightcyan;
 }
 
-.buy-list:hover img {
+.buy-list-item:hover img {
     transform: scale(1.1);
 }
 
@@ -40,17 +44,14 @@
 }
 
 .buy-list-price {
-    padding-left: 20px;
+    width: 10%;
+    min-width: 50px;
 }
 
 .buy-list-name {
-    padding-left: 20px;
     text-decoration: unset;
     color: unset;
-}
-
-.buy-list-descr {
-    padding-left: 20px;
+    width: 20%;
 }
 
 .page-count-unlink:hover {

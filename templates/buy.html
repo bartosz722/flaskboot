@@ -4,11 +4,13 @@
     <h4 class="my-2">Things to buy</h4>
     <ul class="list-group">
       {% for i in model.items %}
-        <li class="list-group-item buy-list" onclick="gotoBuyItem(this, event)">
-          <img src="{{i.image}}" alt="Item image." class="buy-list-image">
-          <span class="buy-list-price">{{i.price}} zł</span>
-          <a class="buy-list-name fs-5" href="/buy/items/{{i.id}}">{{i.name}}</a>
-          <span class="buy-list-descr fs-6">{{i.description}}</span>
+        <li class="list-group-item buy-list-item" onclick="gotoBuyItem(this, event)">
+          <div class="d-flex">
+            <img src="{{i.image}}" alt="Item image." class="buy-list-image">
+            <span class="buy-list-price px-2">{{i.price}} zł</span>
+            <a class="buy-list-name fs-5 px-2" href="/buy/items/{{i.id}}">{{i.name}}</a>
+            <span class="fs-6 px-2">{{i.description}}</span>
+          </div>
         </li>
       {% endfor %}
       </ul>

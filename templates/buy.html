@@ -25,8 +25,11 @@
         {% set next_disabled = 'disabled' if model.pag.nav_next_disabled else '' %}
         <li class="page-item"><a class="page-link {{prev_disabled}}" href="{{prev_href}}">Previous</a></li>
         {% for p in range(model.pag.nav_from, model.pag.nav_to + 1) %}
-          {% set link = '/buy?page={}'.format(p) if p != model.pag.page else '#' %}
-          <li class="page-item {{'active' if p == model.pag.page}}"><a class="page-link" href="{{link}}">{{p}}</a></li>
+          {% if p != model.pag.page %}
+            <li class="page-item"><a class="page-link" href="{{'/buy?page={}'.format(p)}}">{{p}}</a></li>
+          {% else %}
+            <li class="page-item active"><span class="page-link">{{p}}</a></span>
+          {% endif %}
         {% endfor %}
         <li class="page-item">
           <span class="page-link page-count-unlink">of {{model.pag.total_pages}}</span>

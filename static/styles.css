@@ -43,18 +43,9 @@
     transition: transform 0.3s;
 }
 
-.buy-list-price {
-    min-width: 50px;
-}
-
 .buy-list-name {
     text-decoration: unset;
     color: unset;
-    width: 30%;
-}
-
-.buy-list-name-desc {
-    width: 70%;
 }
 
 .page-count-unlink:hover {

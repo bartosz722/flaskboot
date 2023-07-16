@@ -1,7 +1,8 @@
 from flask import Flask, make_response, redirect,  render_template, request, url_for
-from models import BuyItem, BuyItemModel, BuyModel, User
+from models import User
 from utils import *
 from ui_utils import *
+import db
 
 app = Flask(__name__)
 user_cookie = 'shop_user_name'
@@ -15,13 +16,13 @@ def main():
 def buy():
     page = request.args.get('page', default=1, type=int)
     user = _get_user()
-    model = _get_buy_model(page, 5)
+    model = db.get_buy_model(page, 5)
     return render_template('buy.html', user=user, model=model)
 
 @app.route("/buy/items/<item_id>")
 def buy_item(item_id):
     user = _get_user()
-    model = _get_buy_item_model(item_id)
+    model = db.get_buy_item_model(item_id)
     return render_template('buy_item.html', user=user, model=model)
 
 @app.route("/sell")
@@ -70,35 +71,3 @@ def _get_user():
         ret = User()
         ret.name = uc
         return ret
-
-_names = ['Rzecz', 'Przedmiot', 'Coś niesamowitego', 'Zabawka']
-_prices = [10, 1000, 22, 39, 53]
-
-def _get_buy_model(page, page_size):
-    total_items = 35
-    ret = BuyModel()
-    start, end = get_start_end_indexes(page, page_size, total_items)
-    if start < 0:
-        return ret    
-    set_pagination(ret.pag, page, page_size, total_items)
-    
-    for i in range(start, end):
-        item = BuyItem()
-        item.id = str(i + 1)
-        item.name = _names[i % len(_names)] + f' {i + 1}'
-        item.description = 'To jest {}.'.format(item.name[0].lower() + item.name[1:])
-        item.image = f'/static/item{i%4}.jpg'
-        item.price = _prices[i % len(_names)] * (i + 1)
-        ret.items.append(item)
-
-    return ret
-
-def _get_buy_item_model(item_id):
-    items = _get_buy_model(1, 1000)
-    model = BuyItemModel()
-    try:
-        item = next(i for i in items.items if i.id == item_id)
-        model.item = item
-    except:
-        pass
-    return model

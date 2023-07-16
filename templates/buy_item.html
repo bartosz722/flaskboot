@@ -1,11 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div>
+    <!-- <div>
       {{model.item.id}}<br>
       {{model.item.name}}<br>
       {{model.item.description}}<br>
       {{model.item.price}} zł<br>
       {{model.item.image}}<br>
+      {{model.details.long_descr}}<br>
+      {{model.details.attrs}}<br>
+    </div> -->
+    
+    <!-- <div class="row shadow">
+      {{model.item.name}}
+    </div> -->
+    <div class="row mt-3">
+      <div class="col-6">
+        <img src="{{model.item.image}}" alt="Item image." class="buy-item-image shadow bg-light">
+      </div>
+      <div class="col-6">
+        <div>
+          {{model.item.name}}
+        </div>
+        <div>
+          {{model.item.description}}
+        </div>
+        <div>
+          {{model.item.price}} zł
+        </div>
+        <div>
+          <button>Buy</button>
+          <button>Ask</button>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div>
+        {{model.details.long_descr}}
+      </div>
     </div>
 {% endblock %}

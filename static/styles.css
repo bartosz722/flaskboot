@@ -52,3 +52,9 @@
     color: var(--bs-pagination-color);
     background-color: inherit;
 }
+
+.buy-item-image {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+}

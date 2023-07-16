@@ -21,6 +21,11 @@ class BuyItem:
         self.image = ''
         self.price = 0.0
 
+class BuyItemDetails:
+    def __init__(self) -> None:
+        self.long_descr = ''
+        self.attrs: dict[str, str] = {}
+
 class BuyModel:
     def __init__(self) -> None:
         self.pag = Pagination()
@@ -29,3 +34,4 @@ class BuyModel:
 class BuyItemModel:
     def __init__(self) -> None:
         self.item: BuyItem | None = None
+        self.details: BuyItemDetails | None = None

@@ -25,6 +25,11 @@ def buy_item(item_id):
     model = db.get_buy_item_model(item_id)
     return render_template('buy_item.html', user=user, model=model)
 
+@app.route("/buy/item", methods=['POST'])
+def buy_item_confirmed():
+    item_id = request.form.get('itemId', '').strip()
+    return 'bought {}'.format(item_id) # TODO
+
 @app.route("/sell")
 def sell():
     user = _get_user()

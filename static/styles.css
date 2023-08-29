@@ -58,3 +58,7 @@
     height: 300px;
     object-fit: contain;
 }
+
+.bought-info-alert {
+    width: fit-content
+}

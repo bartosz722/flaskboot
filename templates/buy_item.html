@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if bought %}
+    <div>
+      You bought this product :)
+    </div>
+    {% endif %}
+    
     <div class="row mt-3">
       <div class="col-md-6">
         <img src="{{model.item.image}}" alt="Item image." class="buy-item-image shadow bg-light">
@@ -46,13 +52,4 @@
           </form>
         </div>
       </div>
-
-    <script>
-      /*const b = document.getElementById('buy');
-      b.addEventListener('click', () => {
-        const id = '{{model.item.id}}';
-        console.log('kupuję', id);
-      });*/
-      // TODO: Use Offcanvas for confirmation.
-    </script>
 {% endblock %}

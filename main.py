@@ -29,6 +29,8 @@ def buy_item(item_id):
 @app.route("/buy/item", methods=['POST'])
 def buy_item_confirmed():
     item_id = request.form.get('itemId', '').strip()
+    delivery = request.form.get('delivery')
+    print('delivery: {}'.format(delivery))
     return redirect(url_for('buy_item', item_id=item_id, bought=1))
 
 @app.route("/sell")

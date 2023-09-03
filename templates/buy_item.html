@@ -56,16 +56,16 @@
           <form action="/buy/item" method="post">
             <input type="hidden" name="itemId" value="{{model.item.id}}">
 
-            <!-- todo: ustawić obok siebie -->
             <label class="form-label" for="delivery-select">Delivery type:</label>
-            <select name="delivery" id="delivery-select" class="form-select" aria-label="Delivery selection">
+            <select class="form-select w-75" name="delivery" id="delivery-select" aria-label="Delivery selection">
               <option value="">Select...</option>
               <option value="pp">Poczta Polska</option>
               <option value="dhl">DHL</option>
               <option value="pickup">Pickup in store</option>
             </select>
 
-            <button class="btn btn-success w-50" type="submit">Buy</button>
+            <!-- TODO disable if no delivery selected. -->
+            <button class="btn btn-success w-50 mt-3" type="submit">Buy</button>
           </form>
         </div>
       </div>

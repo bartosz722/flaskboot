@@ -57,22 +57,29 @@
             <input type="hidden" name="itemId" value="{{model.item.id}}">
 
             <label class="form-label" for="delivery-select">Delivery type:</label>
-            <select class="form-select w-75" name="delivery" id="delivery-select" aria-label="Delivery selection">
-              <option value="">Select...</option>
+            <select class="form-select w-75" name="delivery" id="delivery-select" aria-label="Delivery selection" 
+                    onchange="deliverySelected(this)">
+              <option selected disabled value="">Select...</option>
               <option value="pp">Poczta Polska</option>
               <option value="dhl">DHL</option>
               <option value="pickup">Pickup in store</option>
             </select>
 
             <!-- TODO disable if no delivery selected. -->
-            <button class="btn btn-success w-50 mt-3" type="submit">Buy</button>
+            <button id="buy-button" class="btn btn-success w-50 mt-3" type="submit" disabled>Buy</button>
           </form>
         </div>
       </div>
 
       <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          document.getElementById('buy').click();
-        });
+        function deliverySelected(e) {
+          const button = document.getElementById('buy-button');
+          if (!!e.value) {
+            button.removeAttribute('disabled');
+          }
+          else {
+            button.setAttribute('disabled', '');
+          }
+        }
       </script>
 {% endblock %}

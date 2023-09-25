@@ -33,7 +33,16 @@
             data-bs-toggle="offcanvas" data-bs-target="#offcanvasConfirmBuy" aria-controls="offcanvasConfirmBuy">
             Buy
           </button>
-          <button type="button" class="btn btn-warning w-25">Ask</button>
+          <button type="button" class="btn btn-warning w-25" 
+                  data-bs-toggle="collapse" data-bs-target="#askQuestion"
+                  aria-expanded="false" aria-controls="askQuestion">Ask</button>
+        </div>
+        <div class="collapse" id="askQuestion">
+          <form class="mt-3" method="post" action="/question/item/{{model.item.id}}">
+            <label for="questionText" class="form-label">Your question:</label>
+            <textarea class="form-control" id="questionText" rows="3" name="uuuu"></textarea>
+            <button id="send-question-button" class="btn btn-info w-50 my-3" type="submit">Send question</button>
+          </form>
         </div>
       </div>
     </div>
@@ -65,7 +74,6 @@
               <option value="pickup">Pickup in store</option>
             </select>
 
-            <!-- TODO disable if no delivery selected. -->
             <button id="buy-button" class="btn btn-success w-50 mt-3" type="submit" disabled>Buy</button>
           </form>
         </div>

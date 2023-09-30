@@ -62,3 +62,15 @@
 .bought-info-alert {
     width: fit-content
 }
+
+#ask-question-button::after {
+    float: right;
+}
+
+#ask-question-button:not([aria-expanded="true"])::after {
+    content: '▼';
+}
+
+#ask-question-button[aria-expanded="true"]::after {
+    content: '▲';
+}

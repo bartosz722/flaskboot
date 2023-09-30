@@ -24,7 +24,8 @@ def buy_item(item_id):
     user = _get_user()
     model = db.get_buy_item_model(item_id)
     bought = 'bought' in request.args
-    return render_template('buy_item.html', user=user, model=model, bought=bought)
+    question_asked = 'question_asked' in request.args
+    return render_template('buy_item.html', user=user, model=model, bought=bought, question_asked=question_asked)
 
 @app.route("/buy/item", methods=['POST'])
 def buy_item_confirmed():
@@ -32,6 +33,12 @@ def buy_item_confirmed():
     delivery = request.form.get('delivery')
     print('delivery: {}'.format(delivery))
     return redirect(url_for('buy_item', item_id=item_id, bought=1))
+
+@app.route("/question/items/<item_id>", methods=['POST'])
+def question_for_item(item_id):
+    question = request.form.get('question')
+    print('question: {}'.format(question))
+    return redirect(url_for('buy_item', item_id=item_id, question_asked=1))
 
 @app.route("/sell")
 def sell():
